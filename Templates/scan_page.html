@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Plant Disease</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <style>
+        /* General Styling (unchanged) */
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{{ url_for('static', filename='images/1.jpg') | safe }}") no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .user-info {
+            background: rgba(39, 174, 96, 0.9);
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .user-info strong {
+            font-weight: bold;
+        }
+
+        .user-info a {
+            color: #ffcccb;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h1 {
+            color: #27ae60;
+            font-size: 24px;
+        }
+
+        .upload-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #4CAF50;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .upload-box input {
+            display: none;
+        }
+
+        .upload-box p {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .description-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .scan-btn, .camera-btn, .capture-btn {
+            background: #27ae60;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .scan-btn:hover, .camera-btn:hover, .capture-btn:hover {
+            background: #219150;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #2980b9;
+        }
+
+        #preview, #video {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #video {
+            display: none;
+        }
+
+        #preview {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- User Info -->
+    <div class="user-info">
+        Logged in as: <strong>{{ user_id }}</strong> | 
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="container">
+        <h1>🌱 Scan Plant Disease</h1>
+
+        <form method="POST" action="{{ url_for('scan_disease') }}" enctype="multipart/form-data" class="scan-form">
+            
+            <!-- Upload Box -->
+            <label class="upload-box">
+                <input type="file" name="image" accept="image/*" id="fileInput">
+                <p>📸 Drag & Drop or Click to Upload</p>
+            </label>
+
+            <!-- Camera Button -->
+            <button type="button" class="camera-btn" id="startCamera">📷 Use Camera</button>
+
+            <!-- Video Feed -->
+            <video id="video" autoplay></video>
+
+            <!-- Capture Button (hidden until camera is started) -->
+            <button type="button" class="capture-btn" id="capture" style="display: none;">📸 Capture</button>
+
+            <!-- Hidden input to store captured image -->
+            <input type="hidden" name="captured_image" id="capturedImage">
+
+            <!-- Description Box -->
+            <input type="text" name="scenario" placeholder="e.g., Forgot to water" class="description-input">
+
+            <button type="submit" class="scan-btn">🔍 Scan</button>
+        </form>
+
+        <a href="{{ url_for('dashboard') }}" class="back-btn">⬅ Back to Dashboard</a>
+
+        <img id="preview" src="" alt="Uploaded or Captured Image Preview">
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const preview = document.getElementById('preview');
+        const fileInput = document.getElementById('fileInput');
+        const startCameraBtn = document.getElementById('startCamera');
+        const captureBtn = document.getElementById('capture');
+        const capturedImageInput = document.getElementById('capturedImage');
+        let stream;
+
+        // Handle file upload preview
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    video.style.display = 'none'; // Hide video if file is uploaded
+                    captureBtn.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Start camera
+        startCameraBtn.addEventListener('click', async function() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                video.style.display = 'block';
+                captureBtn.style.display = 'block';
+                preview.style.display = 'none'; // Hide preview if camera is used
+                fileInput.value = ''; // Clear file input
+            } catch (err) {
+                console.error("Error accessing camera: ", err);
+                alert("Could not access the camera. Please check permissions.");
+            }
+        });
+
+        // Capture image from video
+        captureBtn.addEventListener('click', function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const dataURL = canvas.toDataURL('image/png');
+            preview.src = dataURL;
+            preview.style.display = 'block';
+            capturedImageInput.value = dataURL; // Store base64 image in hidden input
+
+            // Stop the camera stream
+            stream.getTracks().forEach(track => track.stop());
+            video.style.display = 'none';
+            captureBtn.style.display = 'none';
+        });
+
+        // Ensure camera stops when form is submitted (optional)
+        document.querySelector('.scan-form').addEventListener('submit', function() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        });
+    </script>
+
+</body>
+</html>

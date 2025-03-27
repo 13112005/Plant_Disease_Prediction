@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h1 {
+            color: #27ae60;
+            font-size: 24px;
+        }
+
+        .user-info {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .user-info a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .result-box {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-box p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .result-box strong {
+            color: #2c3e50;
+        }
+
+        .button-group {
+            margin-top: 15px;
+        }
+
+        .button-group a {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+            transition: 0.3s ease;
+        }
+
+        .button-group a:hover {
+            background: #219150;
+        }
+
+        .scan-again {
+            background: #3498db;
+        }
+
+        .scan-again:hover {
+            background: #2980b9;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="user-info">
+        Logged in as: <strong>{{ user_id }}</strong> | <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="container">
+        <h1>🌱 Scan Result</h1>
+        
+        <div class="result-box">
+            <p><strong>Disease:</strong> {{ disease }}</p>
+            <p><strong>Likelihood:</strong> {{ likelihood }}</p>
+            <p><strong>Cause:</strong> {{ cause }}</p>
+            <p><strong>Solution (Pesticide):</strong> {{ solution_pesticide }}</p>
+            <p><strong>Solution (Organic):</strong> {{ solution_organic }}</p>
+        </div>
+
+        <div class="button-group">
+            <a href="{{ url_for('scan_page') }}" class="scan-again">🔄 Scan Again</a>
+            <a href="{{ url_for('dashboard') }}">🏠 Back to Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

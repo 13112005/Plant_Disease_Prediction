@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Plant Encyclopedia - Crop Health Intelligence</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='Home.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/Farm-logo.jpg') }}" alt="Plant Encyclopedia Logo">
+            </div>
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="active"><i class="fas fa-home"></i> Home</a></li>
+                {% if 'user_id' not in session %}
+                <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Sign Up</a></li>
+                <li><a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                {% else %}
+                <li><a href="{{ url_for('encyclopedia') }}"><i class="fas fa-book"></i> Encyclopedia</a></li>
+                <li><a href="{{ url_for('scan_page') }}"><i class="fas fa-camera"></i> Scan</a></li>
+                <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Smart Farming Revolution</h1>
+                <p>AI-powered crop health management for modern agriculture</p>
+                <button class="cta-button" id="startScan">Start Free Scan</button>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <img src="{{ url_for('static', filename='images/disease-icon.png') }}" alt="Disease Detection">
+                <h3>AI Disease Detection</h3>
+                <p>Instant identification of 200+ crop diseases with 95% accuracy</p>
+            </div>
+            
+            <div class="feature-card">
+                <img src="{{ url_for('static', filename='images/weather-icon.png') }}" alt="Weather Forecast">
+                <h3>Smart Weather Alerts</h3>
+                <p>Real-time hyperlocal weather predictions</p>
+            </div>
+
+            <div class="feature-card">
+                <img src="{{ url_for('static', filename='images/expert-icon.png') }}" alt="Expert Support">
+                <h3>24/7 Expert Support</h3>
+                <p>Connect with agricultural specialists</p>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: #2E7D32; color: white; padding: 1.5rem; margin-top: 2rem; position: relative;">
+        <p>© 2025 Plant Encyclopedia. Cultivating Smart Agriculture</p>
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a> | 
+            <a href="#terms">Terms of Service</a> | 
+            <a href="#contact">Contact Us</a>
+        </div>
+        <a href="https://wa.me/14155238886?text=join%20drawn-motion" class="whatsapp-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroSection = document.querySelector('.hero');
+            const backgrounds = [
+                "{{ url_for('static', filename='images/home3.png') | safe }}",
+                "{{ url_for('static', filename='images/home1.jpg') | safe }}",
+                "{{ url_for('static', filename='images/home2.avif') | safe }}",
+                "{{ url_for('static', filename='images/home4.jpg') | safe }}",
+                "{{ url_for('static', filename='images/home5.jpg') | safe }}"
+            ];
+            let currentIndex = 0;
+
+            function changeBackground() {
+                heroSection.style.backgroundImage = `url(${backgrounds[currentIndex]})`;
+                currentIndex = (currentIndex + 1) % backgrounds.length;
+            }
+
+            // Initial call and set interval
+            changeBackground();
+            setInterval(changeBackground, 2000); // Change every 2 seconds
+
+            // Start Scan button redirect
+            document.getElementById('startScan').addEventListener('click', () => {
+                window.location.href = "{{ url_for('scan_page') }}";
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encyclopedia - Plant Encyclopedia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='encyclopedia.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <h2>Plant Encyclopedia - Disease Encyclopedia</h2>
+            <div class="user-info">
+                Logged in as: {{ user_id }} | <a href="/logout" id="logout">Logout</a>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search by Crop or Disease..." onkeyup="searchTable()">
+            </div>
+        </nav>
+
+        <h1>Crop Disease Encyclopedia</h1>
+        <table class="disease-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Crop</th>
+                    <th>Disease</th>
+                    <th>Cause</th>
+                    <th>Pesticide Solution</th>
+                    <th>Organic Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/applescab.JPG') }}" alt="Apple___Apple_scab" class="disease-image"></td>
+                    <td>Apple</td>
+                    <td> Apple scab</td>
+                    <td>Caused by the fungus Venturia inaequalis, thriving in wet conditions.</td>
+                    <td>Apply captan or sulfur-based fungicides.</td>
+                    <td>Use neem oil and improve air circulation.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/appleblackrot.JPG') }}" alt="Apple___Black_rot" class="disease-image"></td>
+                    <td>Apple</td>
+                    <td> Black rot</td>
+                    <td>Caused by the fungus Botryosphaeria obtusa, spreading through infected leaves and fruits.</td>
+                    <td>Use fungicides containing thiophanate-methyl or captan.</td>
+                    <td>Prune infected branches and apply copper-based sprays.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/applecedar.JPG') }}" alt="Apple___Cedar_apple_rust" class="disease-image"></td>
+                    <td>Apple</td>
+                    <td> Cedar apple rust</td>
+                    <td>Caused by the fungus Gymnosporangium juniperi-virginianae, requiring juniper as an alternate host.</td>
+                    <td>Apply myclobutanil or mancozeb fungicides.</td>
+                    <td>Remove nearby juniper plants and use sulfur-based sprays.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/applehealthy.JPG') }}" alt="Apple___healthy" class="disease-image"></td>
+                    <td>Apple</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Regular monitoring and preventive fungicide application.</td>
+                    <td>Maintain proper spacing, prune dead branches, and ensure good air circulation.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/blueberryhealthy.JPG') }}" alt="Blueberry___healthy" class="disease-image"></td>
+                    <td>Blueberry</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Ensure regular monitoring and apply preventive treatments if needed.</td>
+                    <td>Mulch with pine needles and ensure proper irrigation.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/cherypowde.JPG') }}" alt="Cherry_(including_sour)___Powdery_mildew" class="disease-image"></td>
+                    <td>Cherry</td>
+                    <td> Powdery mildew</td>
+                    <td>Caused by Podosphaera clandestina, leading to white powdery spots on leaves.</td>
+                    <td>Use sulfur-based fungicides or myclobutanil.</td>
+                    <td>Apply neem oil or baking soda spray.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/cherryhealt.JPG') }}" alt="Cherry_(including_sour)___healthy" class="disease-image"></td>
+                    <td>Cherry</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Preventive monitoring and fungicide application if necessary.</td>
+                    <td>Maintain good air circulation and avoid excessive humidity.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/cornhealth.jpg') }}" alt="Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot" class="disease-image"></td>
+                    <td>Corn</td>
+                    <td> Cercospora leaf spot Gray leaf spot</td>
+                    <td>Caused by the fungus Cercospora zeae-maydis, spreading in humid conditions.</td>
+                    <td>Use azoxystrobin or propiconazole-based fungicides.</td>
+                    <td>Rotate crops and ensure proper field drainage.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/cornRS_Rust 1567.JPG') }}" alt="Corn_(maize)___Common_rust_" class="disease-image"></td>
+                    <td>Corn</td>
+                    <td> Common rust </td>
+                    <td>Caused by the fungus Puccinia sorghi, appearing as reddish-brown pustules.</td>
+                    <td>Apply strobilurin or triazole fungicides.</td>
+                    <td>Grow resistant varieties and remove infected plants.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/cornleafblight.JPG') }}" alt="Corn_(maize)___Northern_Leaf_Blight" class="disease-image"></td>
+                    <td>Corn</td>
+                    <td> Northern Leaf Blight</td>
+                    <td>Caused by Exserohilum turcicum, leading to elongated lesions on leaves.</td>
+                    <td>Apply fungicides containing mancozeb or azoxystrobin.</td>
+                    <td>Rotate crops and avoid planting maize in infected fields.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/cornhealth.JPG') }}" alt="Corn_(maize)___healthy" class="disease-image"></td>
+                    <td>Corn</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Maintain proper pest control and apply preventive fungicides if needed.</td>
+                    <td>Ensure good spacing and irrigation practices.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/graperot.JPG') }}" alt="Grape___Black_rot" class="disease-image"></td>
+                    <td>Grape</td>
+                    <td> Black rot</td>
+                    <td>Caused by the fungus Guignardia bidwellii, forming brown spots on leaves and fruits.</td>
+                    <td>Use mancozeb or myclobutanil fungicides.</td>
+                    <td>Prune infected vines and ensure proper ventilation.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/grapeesca.JPG') }}" alt="Grape___Esca_(Black_Measles)" class="disease-image"></td>
+                    <td>Grape</td>
+                    <td> Esca (Black Measles)</td>
+                    <td>Caused by a fungal complex affecting older grapevines, causing wood decay.</td>
+                    <td>No chemical treatment available; remove infected vines.</td>
+                    <td>Apply sodium bicarbonate and improve soil health.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/grapeleafbli.JPG') }}" alt="Grape___Leaf_blight_(Isariopsis_Leaf_Spot)" class="disease-image"></td>
+                    <td>Grape</td>
+                    <td> Leaf blight (Isariopsis Leaf Spot)</td>
+                    <td>Caused by Pseudocercospora vitis, forming small brown lesions on leaves.</td>
+                    <td>Apply copper-based fungicides.</td>
+                    <td>Ensure good air circulation and remove infected leaves.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/grapehealt.JPG') }}" alt="Grape___healthy" class="disease-image"></td>
+                    <td>Grape</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Monitor regularly and apply preventive treatments as needed.</td>
+                    <td>Maintain good pruning and fertilization practices.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/orange.JPG') }}" alt="Orange___Haunglongbing_(Citrus_greening)" class="disease-image"></td>
+                    <td>Orange</td>
+                    <td> Haunglongbing (Citrus greening)</td>
+                    <td>Caused by Candidatus Liberibacter spp., spread by Asian citrus psyllids.</td>
+                    <td>Apply systemic insecticides like imidacloprid.</td>
+                    <td>Use neem oil and introduce natural predators of psyllids.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tombac.JPG') }}" alt="Tomato___Bacterial_spot" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> Bacterial spot</td>
+                    <td>Caused by Xanthomonas spp., leading to dark, water-soaked leaf spots.</td>
+                    <td>Use copper-based fungicides and bactericides.</td>
+                    <td>Apply compost tea and avoid overhead watering.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tomebl.JPG') }}" alt="Tomato___Early_blight" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> Early blight</td>
+                    <td>Caused by Alternaria solani, forming brown concentric rings on leaves.</td>
+                    <td>Use chlorothalonil or copper-based fungicides.</td>
+                    <td>Mulch soil to reduce spore splash and remove infected leaves.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tomlate.JPG') }}" alt="Tomato___Late_blight" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> Late blight</td>
+                    <td>Caused by Phytophthora infestans, leading to rapid leaf decay.</td>
+                    <td>Use mancozeb or metalaxyl-based fungicides.</td>
+                    <td>Remove infected plants and use resistant varieties.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tomhealt.JPG') }}" alt="Tomato___healthy" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Regularly monitor for pests and apply fungicides as needed.</td>
+                    <td>Ensure crop rotation and proper ventilation.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/peachbac.JPG') }}" alt="Peach___Bacterial_spot" class="disease-image"></td>
+                    <td>Peach</td>
+                    <td> Bacterial spot</td>
+                    <td>Caused by Xanthomonas arboricola, leading to small, dark lesions on leaves and fruits.</td>
+                    <td>Use copper-based bactericides and streptomycin sprays.</td>
+                    <td>Prune infected branches and avoid overhead watering.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/peachheal.JPG') }}" alt="Peach___healthy" class="disease-image"></td>
+                    <td>Peach</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Regular monitoring and preventive treatments if needed.</td>
+                    <td>Ensure proper air circulation and balanced fertilization.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/pepbelbac.JPG') }}" alt="Pepper,_bell___Bacterial_spot" class="disease-image"></td>
+                    <td>Pepper Bell</td>
+                    <td> Bacterial spot</td>
+                    <td>Caused by Xanthomonas campestris, leading to black water-soaked lesions.</td>
+                    <td>Apply copper-based fungicides and bactericides.</td>
+                    <td>Use disease-free seeds and rotate crops.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/pepbelheal.JPG') }}" alt="Pepper,_bell___healthy" class="disease-image"></td>
+                    <td>Pepper Bell</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Preventive monitoring and fungicide application if necessary.</td>
+                    <td>Ensure proper irrigation and soil health.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/potaer.JPG') }}" alt="Potato___Early_blight" class="disease-image"></td>
+                    <td>Potato</td>
+                    <td> Early blight</td>
+                    <td>Caused by Alternaria solani, forming concentric ring spots on leaves.</td>
+                    <td>Use chlorothalonil or azoxystrobin fungicides.</td>
+                    <td>Apply compost tea and rotate crops.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/potalate.JPG') }}" alt="Potato___Late_blight" class="disease-image"></td>
+                    <td>Potato</td>
+                    <td> Late blight</td>
+                    <td>Caused by Phytophthora infestans, leading to rapid leaf decay and rot.</td>
+                    <td>Use mancozeb or metalaxyl-based fungicides.</td>
+                    <td>Remove infected plants and ensure good ventilation.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/potaheal.JPG') }}" alt="Potato___healthy" class="disease-image"></td>
+                    <td>Potato</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Monitor regularly and apply preventive treatments if needed.</td>
+                    <td>Ensure proper drainage and fertilization.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/rasheal.JPG') }}" alt="Raspberry___healthy" class="disease-image"></td>
+                    <td>Raspberry</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Preventive monitoring and fungicide application if necessary.</td>
+                    <td>Maintain good pruning and pest control.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/soyaheal.JPG') }}" alt="Soybean___healthy" class="disease-image"></td>
+                    <td>Soyabean</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Monitor for early signs of disease and pests.</td>
+                    <td>Use crop rotation and natural pest deterrents.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/squapowmil.JPG') }}" alt="Squash___Powdery_mildew" class="disease-image"></td>
+                    <td>Squash</td>
+                    <td> Powdery mildew</td>
+                    <td>Caused by Podosphaera xanthii, forming white powdery spots on leaves.</td>
+                    <td>Use sulfur-based fungicides or potassium bicarbonate.</td>
+                    <td>Apply neem oil and improve airflow around plants.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/strawleafdis.JPG') }}" alt="Strawberry___Leaf_scorch" class="disease-image"></td>
+                    <td>Strawberry</td>
+                    <td> Leaf scorch</td>
+                    <td>Caused by Diplocarpon earliana, leading to reddish-brown leaf spots.</td>
+                    <td>Use fungicides like myclobutanil or captan.</td>
+                    <td>Ensure good soil drainage and remove infected leaves.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/straw.JPG') }}" alt="Strawberry___healthy" class="disease-image"></td>
+                    <td>Strawberry</td>
+                    <td> healthy</td>
+                    <td>No disease detected, plant is in good condition.</td>
+                    <td>Regular monitoring and preventive treatments if needed.</td>
+                    <td>Maintain good watering practices and remove weeds.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tomleafmold.JPG') }}" alt="Tomato___Leaf_Mold" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> Leaf Mold</td>
+                    <td>Caused by the fungus Passalora fulva, leading to yellowing and mold growth on leaves.</td>
+                    <td>Apply chlorothalonil or copper-based fungicides.</td>
+                    <td>Increase air circulation and avoid overhead watering.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tomseptora.JPG') }}" alt="Tomato___Septoria_leaf_spot" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> Septoria leaf spot</td>
+                    <td>Caused by Septoria lycopersici, forming small, dark leaf spots with light centers.</td>
+                    <td>Use mancozeb or chlorothalonil fungicides.</td>
+                    <td>Remove infected leaves and practice crop rotation.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tomspimi.JPG') }}" alt="Tomato___Spider_mites Two-spotted_spider_mite" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> Spider mites Two-spotted spider mite</td>
+                    <td>Caused by Tetranychus urticae, leading to yellow stippling and webbing on leaves.</td>
+                    <td>Apply miticides such as abamectin or bifenthrin.</td>
+                    <td>Use neem oil and encourage natural predators like ladybugs.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tomtaspo.JPG') }}" alt="Tomato___Target_Spot" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> Target Spot</td>
+                    <td>Caused by Corynespora cassiicola, leading to dark lesions on leaves and fruits.</td>
+                    <td>Use azoxystrobin or copper-based fungicides.</td>
+                    <td>Ensure proper spacing and remove infected plant parts.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tomtoyellcurl.JPG') }}" alt="Tomato___Tomato_Yellow_Leaf_Curl_Virus" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> Tomato Yellow Leaf Curl Virus</td>
+                    <td>Caused by a virus transmitted by whiteflies, leading to curled and yellowed leaves.</td>
+                    <td>Use imidacloprid or pyriproxyfen for whitefly control.</td>
+                    <td>Use reflective mulches and introduce predatory insects.</td>
+                </tr>
+                
+                <tr>
+                    <td><img src="{{ url_for('static', filename='Test/tomtomosvi.JPG') }}" alt="Tomato___Tomato_mosaic_virus" class="disease-image"></td>
+                    <td>Tomato</td>
+                    <td> Tomato mosaic virus</td>
+                    <td>Caused by Tomato mosaic virus (ToMV), leading to mottled, distorted leaves.</td>
+                    <td>No direct chemical control; remove infected plants.</td>
+                    <td>Disinfect tools and avoid handling plants when wet.</td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <a href="/dashboard" class="btn">Back to Dashboard</a>
+    </div>
+    <script>
+        function searchTable() {
+            // Get the input value and convert to lowercase for case-insensitive search
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let table = document.querySelector(".disease-table");
+            let rows = table.getElementsByTagName("tr");
+
+            // Loop through all table rows (skip the header row)
+            for (let i = 1; i < rows.length; i++) {
+                let crop = rows[i].getElementsByTagName("td")[1].textContent.toLowerCase(); // Crop column
+                let disease = rows[i].getElementsByTagName("td")[2].textContent.toLowerCase(); // Disease column
+
+                // Show row if it matches the search input, hide otherwise
+                if (crop.includes(input) || disease.includes(input)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

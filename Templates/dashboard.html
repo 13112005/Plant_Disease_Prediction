@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Plant Encyclopedia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/Farm-logo.jpg') }}" alt="Plant Encyclopedia Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{{ url_for('encyclopedia') }}"><i class="fas fa-book"></i> Encyclopedia</a></li>
+                <li><a href="{{ url_for('scan_page') }}"><i class="fas fa-camera"></i> Scan</a></li>
+                <li><a href="{{ url_for('lifecycle_page') }}"><i class="fas fa-seedling"></i> Lifecycle</a></li>
+                <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <h1>Welcome to Your Plant Encyclopedia Dashboard</h1>
+        <p>Logged in as: {{ user_id }}</p>
+
+        <div class="info-columns">
+            <section class="weather-alerts">
+                <h2>Weather Alerts</h2>
+                <div id="weather-alert" class="alert">
+                    <i class="fas fa-cloud"></i>
+                    <span>Temperature: {{ weather.temp }}°C, Humidity: {{ weather.humidity }}%, Condition: {{ weather.condition }}</span>
+                </div>
+            </section>
+
+            <section class="action-blocks">
+                <div class="alert action-block" data-url="{{ url_for('scan_page') }}">
+                    <i class="fas fa-camera"></i>
+                    <span>Scan a Plant</span>
+                </div>
+                <div class="alert action-block" data-url="{{ url_for('lifecycle_page') }}">
+                    <i class="fas fa-seedling"></i>
+                    <span>Track Lifecycle</span>
+                </div>
+                <a href="https://wa.me/14155238886?text=join%20drawn-motion" class="alert action-block whatsapp-card" target="_blank">
+                    <img src="{{ url_for('static', filename='images/whatsapp.png') }}" alt="WhatsApp Chat" class="action-icon">
+                    <span>Chat with Us</span>
+                </a>
+            </section>
+
+            <section class="yojana">
+                <h2>Yojana By Government for Farmers</h2>
+                <div class="disease-list" id="yojana-list">
+                    <div class="disease-item">
+                        <span><a href="https://pmkisan.gov.in/" target="_blank">PM Kisan Samman Nidhi</a></span>
+                        <span>Financial assistance of ₹6,000 per year to small and marginal farmers.</span>
+                    </div>
+                    <div class="disease-item">
+                        <span><a href="https://pmfby.gov.in/" target="_blank">PM Fasal Bima Yojana</a></span>
+                        <span>Crop insurance scheme to protect farmers against crop loss. </span>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='Dashboard.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
