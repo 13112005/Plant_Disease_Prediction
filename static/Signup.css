@@ -1,0 +1,132 @@
+:root {
+  --primary-green: #2E7D32;
+  --secondary-brown: #6D4C41;
+  --white: #ffffff;
+  --input-bg: #f8f9fa;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--input-bg);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-container {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 450px;
+  margin: 1rem;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo img {
+  height: 90px;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+h2 {
+  color: var(--secondary-brown);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 1.8rem;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.8rem;
+}
+
+.input-group i {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-green);
+  font-size: 1.2rem;
+}
+
+input {
+  width: 80%;
+  padding: 1rem 1rem 1rem 3.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 10px rgba(46, 125, 50, 0.1);
+}
+
+.scan-btn {
+  width: 100%;
+  padding: 1.1rem;
+  background: var(--primary-green);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.scan-btn:hover {
+  background: #245a27;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(46, 125, 50, 0.2);
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 1.8rem;
+  color: var(--secondary-brown);
+  font-size: 0.95rem;
+}
+
+.auth-link a {
+  color: var(--primary-green);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.auth-link a:hover {
+  color: #245a27;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 1.8rem;
+  }
+  
+  input {
+    padding: 0.9rem 0.9rem 0.9rem 3.2rem;
+  }
+  
+  .scan-btn {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}

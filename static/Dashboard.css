@@ -1,0 +1,288 @@
+/* Base Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('/static/images/dashboard.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+nav ul.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #6D4C41;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #2E7D32;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #6D4C41;
+}
+
+.dashboard-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 80px auto 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    flex: 1;
+}
+
+h1 {
+    color: #264653;
+    margin-bottom: 1rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+/* Info Columns */
+.info-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.weather-alerts,
+.action-blocks,
+.yojana {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: rgba(248, 249, 250, 0.9);
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.alert:hover {
+    background-color: rgba(224, 224, 224, 0.9);
+}
+
+.alert i {
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    color: #e76f51;
+}
+
+.action-blocks .alert {
+    cursor: pointer;
+}
+
+.whatsapp-card {
+    text-decoration: none;
+    color: inherit;
+}
+
+.action-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+    object-fit: contain;
+}
+
+.disease-list {
+    margin-top: 1rem;
+}
+
+.disease-item {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background-color: rgba(248, 249, 250, 0.9);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.disease-item a {
+    color: #2E7D32;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.disease-item a:hover {
+    color: #1B5E20;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .dashboard-container {
+        padding: 1.5rem;
+    }
+    
+    .info-columns {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .weather-alerts,
+    .action-blocks,
+    .yojana {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 0.75rem 1rem;
+        position: relative;
+    }
+    
+    .logo img {
+        height: 40px;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    /* Three lines to hide navbar info by default */
+    nav ul.nav-links {
+        display: none; /* Hides the navbar info */
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    nav ul.nav-links.active {
+        display: flex; /* Shows the navbar when hamburger is clicked */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 1rem 0;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav ul.nav-links li {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+    
+    .dashboard-container {
+        margin: 70px 0.5rem 1rem;
+        padding: 1rem;
+    }
+    
+    .info-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .alert {
+        padding: 0.8rem;
+    }
+    
+    .alert i,
+    .action-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 1.2rem;
+    }
+    
+    .disease-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 0.8rem;
+    }
+    
+    .disease-item span {
+        margin: 0.25rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 35px;
+    }
+    
+    h1 {
+        font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+    }
+    
+    p {
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+    }
+    
+    .weather-alerts,
+    .action-blocks,
+    .yojana {
+        padding: 1rem;
+    }
+    
+    .alert {
+        padding: 0.6rem;
+    }
+    
+    .alert i,
+    .action-icon {
+        width: 18px;
+        height: 18px;
+        font-size: 1rem;
+    }
+    
+    .disease-item {
+        padding: 0.6rem;
+    }
+    
+    .disease-item span {
+        font-size: 0.9rem;
+    }
+    
+    .disease-item a {
+        font-size: 0.9rem;
+    }
+}

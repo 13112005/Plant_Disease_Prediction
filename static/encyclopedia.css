@@ -1,0 +1,231 @@
+/* Base Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #2a9d8f;
+    color: white;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: #f4a261;
+}
+
+.user-info {
+    color: white;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 80px auto 2rem;
+    padding: 1rem;
+}
+
+h1 {
+    color: #264653;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.disease-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.disease-table th,
+.disease-table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.disease-table th {
+    background-color: #2a9d8f;
+    color: white;
+}
+
+.disease-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.disease-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.disease-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.btn {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    background-color: #2a9d8f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #217c71;
+}
+
+
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    nav {
+        padding: 0.75rem 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .logo img {
+        height: 40px;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #2a9d8f;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 1rem 0;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+    
+    .container {
+        margin: 70px 0.5rem 1rem;
+        padding: 0.5rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .disease-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .disease-table thead {
+        display: table;
+        width: 100%;
+    }
+    
+    .disease-table tbody {
+        display: table;
+        width: 100%;
+    }
+    
+    .disease-table th,
+    .disease-table td {
+        padding: 0.5rem;
+        min-width: 120px; /* Ensures columns don't collapse too much */
+    }
+    
+    .disease-image {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+    }
+    
+
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 35px;
+    }
+    
+    h1 {
+        font-size: 1.25rem;
+    }
+    
+    .disease-table th,
+    .disease-table td {
+        font-size: 0.85rem;
+        padding: 0.4rem;
+        min-width: 100px;
+    }
+    
+    .disease-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    
+}
